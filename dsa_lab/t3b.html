@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guys don't copy _Sha10</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-item" href="index.html">Term1</a></li>
+          <li><a class="nav-item" href="t2.html">Term2</a></li>
+          <li><a class="nav-item" href="t3.html">Term3</a></li>
+          <li><a class="nav-item" href="t4.html">Term4</a></li>
+          <li><a class="nav-item" href="t5.html">Term5</a></li>
+          <li><a class="nav-item" href="t6.html">Term6</a></li>
+          <li><a class="nav-item" href="t7.html">Term7</a></li>
+          <li><a class="nav-item" href="t8.html">Term8</a></li>
+          <li><a class="nav-item" href="t9.html">Term9</a></li>
+          <li><a class="nav-item" href="t10.html">Term10</a></li>
+          <li><a class="nav-item" href="t3b.html">Term*3</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Termwork *3</h1>
+      <button onclick="copyCode()">Copy Code</button>
+      <pre class="termwork">
+        #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+  
+  typedef struct node
+  {
+      int data;
+      struct node *next;
+      struct node *prev;
+  }NODE;
+  
+  NODE* add(NODE*, int);
+  void disp(NODE*);
+  //int search(NODE*, int);
+  
+  int main()
+  {
+      //Create an empty warehouse
+      NODE *head=NULL;
+      int opt, item;
+      while(1)
+      {
+          printf("\n1: Add item    2: Display   ");
+          printf("3: exit");
+          printf("\nEnter your option: ");
+          scanf("%d", &opt);
+          switch(opt)
+          {
+              case 1: printf("\nEnter item to add to list: ");
+                      scanf("%d", &item);
+                      head=add(head, item);
+                      break;
+              case 2: disp(head);
+                      break;
+              case 3: exit(0);
+          }
+      }
+      return 0;
+  }
+  
+  
+  NODE* add(NODE* head, int item)
+  {
+      NODE *start, *curr;
+      NODE *newnode=(NODE*)malloc(sizeof(NODE));
+      if(newnode==NULL)
+      {
+          printf("\nMalloc failure");
+          exit(1);
+      }
+      newnode-&gt;data=item;
+      newnode-&gt;next=NULL;
+      newnode-&gt;prev=NULL;
+      // Case i - List is empty
+      if(head==NULL)
+          head=newnode;
+      else // Case ii - adding the smallest item
+          if(item &lt; head-&gt;data)
+          {
+                newnode-&gt;next = head;
+                head = newnode;
+          }
+      else // Case iii
+      {
+          start=head;
+          curr=head-&gt;next;
+          while(curr && item &gt; curr-&gt;data)
+          {
+              start=start-&gt;next;
+              curr=curr-&gt;next;
+          }//end of while
+          newnode-&gt;next=curr;
+          newnode-&gt;prev=start;
+          start-&gt;next=newnode;
+  
+      }//end of else
+      return head;
+  }
+  
+  
+  void disp(NODE *head)
+  {
+      if(head==NULL)
+      {
+          printf("\nlist is empty");
+          return;
+      }
+      printf("\nThe list items are: ");
+      while(head)
+      {
+          printf("%d    ", head-&gt;data);
+          head=head-&gt;next;
+      } }
+        </pre
+      >
+    </main>
+    <script>
+      function copyCode() {
+        const codeText = document.querySelector("pre").textContent;
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = codeText;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        alert("Code copied to clipboard!");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guys don't copy _Sha10</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-item" href="index.html">Term1</a></li>
+          <li><a class="nav-item" href="t2.html">Term2</a></li>
+          <li><a class="nav-item" href="t3.html">Term3</a></li>
+          <li><a class="nav-item" href="t4.html">Term4</a></li>
+          <li><a class="nav-item" href="t5.html">Term5</a></li>
+          <li><a class="nav-item" href="t6.html">Term6</a></li>
+          <li><a class="nav-item" href="t7.html">Term7</a></li>
+          <li><a class="nav-item" href="t8.html">Term8</a></li>
+          <li><a class="nav-item" href="t9.html">Term9</a></li>
+          <li><a class="nav-item" href="t10.html">Term10</a></li>
+          <li><a class="nav-item" href="t3b.html">Term*3</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Termwork 10</h1>
+      <button onclick="copyCode()">Copy Code</button>
+      <pre class="termwork">
+            #include&lt;stdio.h&gt;
+    //#include&lt;conio.h&gt;
+    #include&lt;math.h&gt;
+    int a[30],count=0;
+    //row= index & column=value ie i=row and a[i]=column
+    int place(int pos)
+    {
+        int i;
+        for(i=1;i&lt;pos;i++) //from  1st row to (current row-1)to check with all prev queens
+        {
+            if((a[i]==a[pos])||((abs(a[i]-a[pos])==abs(i-pos))))
+            return 0;  //if a queen exists in same column or diagonally
+        }
+        return 1;
+    }
+    void printsol(int n)
+    {
+        int i,j;
+        count++;
+        printf("\n\nSolution #%d \n\n",count);
+        for(i=1;i&lt;=n;i++)
+        {               for(j=1;j&lt;=n;j++)
+            {                   if(a[i]==j) printf("Q\t");
+                else            printf("*\t");
+            }
+            printf("\n");
+        }
+    }
+    
+    void queen(int n)
+    {
+        int k=1;
+        a[k]=0;
+        while(k!=0)
+        {
+            a[k]=a[k]+1;
+            while(a[k]&lt;=n && !place(k))  //while columns are left and k cant be placed
+                a[k]++;
+            if(a[k]&lt;=n)
+            {
+                if(k==n)
+                    printsol(n);
+                else
+                {
+                    k++;
+                    a[k]=0;
+                }
+            }
+            else
+                k--;
+        }
+    }
+    void main()
+    {	int n;
+        printf("Enter the Number of queens\n");
+        scanf("%d",&n);
+        queen(n);
+        printf("\nTotal Number of Solutions=%d",count);
+    
+    }
+    
+        </pre
+      >
+    </main>
+    <script>
+      function copyCode() {
+        const codeText = document.querySelector("pre").textContent;
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = codeText;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        alert("Code copied to clipboard!");
+      }
+    </script>
+  </body>
+</html>

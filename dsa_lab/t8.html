@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guys don't copy _Sha10</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-item" href="index.html">Term1</a></li>
+          <li><a class="nav-item" href="t2.html">Term2</a></li>
+          <li><a class="nav-item" href="t3.html">Term3</a></li>
+          <li><a class="nav-item" href="t4.html">Term4</a></li>
+          <li><a class="nav-item" href="t5.html">Term5</a></li>
+          <li><a class="nav-item" href="t6.html">Term6</a></li>
+          <li><a class="nav-item" href="t7.html">Term7</a></li>
+          <li><a class="nav-item" href="t8.html">Term8</a></li>
+          <li><a class="nav-item" href="t9.html">Term9</a></li>
+          <li><a class="nav-item" href="t10.html">Term10</a></li>
+          <li><a class="nav-item" href="t3b.html">Term*3</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Termwork 8</h1>
+      <button onclick="copyCode()">Copy Code</button>
+      <pre class="termwork">
+            #include&lt;stdio.h&gt;
+ 
+
+    int a,b,u,v,n,i,j,ne=1;
+     
+    int visited[10]={0},min,mincost=0,cost[10][10];
+     
+    void main()
+     
+    {
+     
+        
+     
+        printf("\nEnter the number of nodes:");
+     
+        scanf("%d",&n);
+     
+        printf("\nEnter the adjacency matrix:\n");
+     
+        for(i=1;i&lt;=n;i++)
+     
+        for(j=1;j&lt;=n;j++)
+     
+        {
+     
+            scanf("%d",&cost[i][j]);
+     
+            if(cost[i][j]==0)
+     
+                cost[i][j]=999;
+     
+        }
+     
+        visited[1]=1;
+     
+        printf("\n");
+     
+        while(ne &lt; n)
+     
+        {
+     
+            for(i=1,min=999;i&lt;=n;i++)
+     
+            for(j=1;j&lt;=n;j++)
+     
+            if(cost[i][j]&lt; min)
+     
+            if(visited[i]!=0)
+     
+            {
+     
+                min=cost[i][j];
+     
+                a=u=i;
+     
+                b=v=j;
+     
+            }
+     
+            if(visited[u]==0 || visited[v]==0)
+     
+            {
+     
+                printf("\n Edge %d:(%d %d) cost:%d",ne++,a,b,min);
+     
+                mincost+=min;
+     
+                visited[b]=1;
+     
+            }
+     
+            cost[a][b]=cost[b][a]=999;
+     
+        }
+     
+        printf("\n Minimun cost=%d",mincost);
+     
+        
+     
+    }
+    
+        </pre
+      >
+    </main>
+    <script>
+      function copyCode() {
+        const codeText = document.querySelector("pre").textContent;
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = codeText;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        alert("Code copied to clipboard!");
+      }
+    </script>
+  </body>
+</html>

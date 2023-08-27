@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guys don't copy _Sha10</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-item" href="index.html">Term1</a></li>
+          <li><a class="nav-item" href="t2.html">Term2</a></li>
+          <li><a class="nav-item" href="t3.html">Term3</a></li>
+          <li><a class="nav-item" href="t4.html">Term4</a></li>
+          <li><a class="nav-item" href="t5.html">Term5</a></li>
+          <li><a class="nav-item" href="t6.html">Term6</a></li>
+          <li><a class="nav-item" href="t7.html">Term7</a></li>
+          <li><a class="nav-item" href="t8.html">Term8</a></li>
+          <li><a class="nav-item" href="t9.html">Term9</a></li>
+          <li><a class="nav-item" href="t10.html">Term10</a></li>
+          <li><a class="nav-item" href="t3b.html">Term*3</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Termwork 5</h1>
+      <button onclick="copyCode()">Copy Code</button>
+      <pre class="termwork">
+        #include&lt;stdio.h&gt;
+        #include&lt;string.h&gt;
+        #include&lt;stdlib.h&gt;
+        typedef struct {
+            int roll_no;
+            char name[20];
+            char branch[5];
+        }Student_info;
+        
+        void display_stud_info(Student_info *data,int num){
+            if(data-&gt;roll_no==num)
+            printf("Roll no:%d Name:%s Branch:%s \n",data-&gt;roll_no,data-&gt;name,data-&gt;branch);
+            else
+            return;
+        }
+        struct node {
+            Student_info *data;
+            struct node* L;
+            struct node* R;
+        };
+        struct node* insert(struct node *root,Student_info *val){
+            struct node *p,*q,*r;
+            p=(struct node *) malloc(sizeof(struct node));
+            if(p!=NULL){
+                p-&gt;data=(Student_info *) malloc(sizeof(Student_info));
+                if(p-&gt;data!=NULL){
+                p-&gt;data-&gt;roll_no=val-&gt;roll_no;
+                strcpy(p-&gt;data-&gt;name,val-&gt;name);
+                strcpy(p-&gt;data-&gt;branch,val-&gt;branch);
+                }
+                p-&gt;L=0;
+                p-&gt;R=0;
+        
+            }
+            if(root==NULL){
+                root=p;
+                return root;
+            }
+            q=root;
+            while(q!=NULL){
+                r=q;
+                if(val-&gt;roll_no&lt;q-&gt;data-&gt;roll_no)
+                {
+                    q=q-&gt;L;
+                }
+                else{
+                    q=q-&gt;R;
+                }
+            }
+            if(val-&gt;roll_no&lt;r-&gt;data-&gt;roll_no)
+                {
+                    r-&gt;L=p;
+                }
+            else{
+                    r-&gt;R=p;
+                }
+                return root;
+        
+        }
+        void in_trav(struct node *root,int num){
+            if(root==NULL)
+                return;
+            in_trav(root-&gt;L,num);
+            
+            display_stud_info(root-&gt;data,num);
+            in_trav(root-&gt;R,num);
+            }
+        
+        int main(){
+            Student_info data;
+            struct node *root=0;
+            data.roll_no=12;
+            strcpy(data.name,"A");
+            strcpy(data.branch,"ISE");
+            root=insert(root,&data);
+            data.roll_no=13;
+            strcpy(data.name,"B");
+            strcpy(data.branch,"ISE");
+            root=insert(root,&data);
+            data.roll_no=11;
+            strcpy(data.name,"C");
+            strcpy(data.branch,"ISE");
+            root=insert(root,&data);
+            in_trav(root,11);
+            return 0;
+        }
+        </pre
+      >
+    </main>
+    <script>
+      function copyCode() {
+        const codeText = document.querySelector("pre").textContent;
+        const tempTextarea = document.createElement("textarea");
+        tempTextarea.value = codeText;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+        alert("Code copied to clipboard!");
+      }
+    </script>
+  </body>
+</html>
